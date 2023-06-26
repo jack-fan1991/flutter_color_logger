@@ -1,26 +1,11 @@
 import 'dart:io';
-
+import 'package:color_logger/color_logger.dart';
 import 'package:flutter/foundation.dart';
 import 'package:logging/logging.dart';
 
 import 'dart:developer' as developer;
 
-part './ansi_color.dart';
-
-final levelColors = {
-  Level.FINE: AnsiColor.fg(75),
-  Level.SEVERE: AnsiColor.fg(196),
-};
-
-final Map<Level, int> methodCounts = {
-  Level.SEVERE: 8,
-  Level.FINE: 2,
-};
-
-final levelEmojis = {
-  Level.FINE: '💡 ',
-  Level.SEVERE: '⛔ ',
-};
+final loggerHelperFormatter = LoggerHelperFormatter();
 
 class ColorLogger {
   static const verticalLine = ' │ ';
@@ -28,23 +13,67 @@ class ColorLogger {
       '┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────';
   static const tail =
       '└──────────────────────────────────────────────────────────────────────────────────────────────────────────────';
+  static Filter filter = Filter.allPass();
+  static bool _stackTracking = true;
+  static bool get stackTracking => _stackTracking;
 
-  static bool _logStack = true;
-  static bool get logStack => _logStack;
-  static set logStack(bool value) {
+  static set stackTracking(bool value) {
     if (kIsWeb && value == true) {
       developer.log(AnsiColor.fg(196)(
           "ColorObserverLogger.logStack tracking is not supported on web platform"));
       return;
     }
-    _logStack = value;
+    _stackTracking = value;
+  }
+
+  static Level _highLightLevel = Level.SEVERE;
+
+  static set highLightLevel(Level? value) {
+    _highLightLevel = value ?? Level.SEVERE;
+  }
+
+  static final Map<Level, AnsiColor> defaultLevelColors = {
+    Level.FINE: AnsiColor.fg(75),
+    Level.SEVERE: AnsiColor.fg(196),
+  };
+
+  static final Map<Level, int> defaultMethodCounts = {
+    Level.SEVERE: 8,
+    Level.FINE: 2,
+  };
+
+  static void updateMethodCounts(Map<Level, int>? methodCounts) {
+    if (methodCounts == null) return;
+    for (final element in methodCounts.entries) {
+      defaultMethodCounts[element.key] = element.value;
+    }
+  }
+
+  static void updateLevelColors(Map<Level, AnsiColor>? levelColors) {
+    if (levelColors == null) return;
+    for (final element in levelColors.entries) {
+      defaultLevelColors[element.key] = element.value;
+    }
+  }
+
+  static bool canLog(LogRecord logRecord) {
+    if (filter.name.isEmpty) {
+      return true;
+    } else if (filter is ShowWhenFilter) {
+      return filter.name.contains(logRecord.loggerName);
+    } else if (filter is HideWhenFilter) {
+      return !filter.name.contains(logRecord.loggerName);
+    } else {
+      return true;
+    }
   }
 
   static output(LogRecord record) {
     // methodCount = methodCounts[level];
-    AnsiColor color = levelColors[record.level] ?? AnsiColor.none();
-    List<String> msg = AnsiColor.loggerHelperFormatter.format(record);
-    if (record.level >= Level.SEVERE) {
+    if (!canLog(record)) return;
+    AnsiColor color = defaultLevelColors[record.level] ?? AnsiColor.none();
+    List<String> msg = loggerHelperFormatter.format(record);
+    if (record.level >= _highLightLevel) {
       msg = [head, ...msg, tail];
     }
     for (var s in msg) {
@@ -79,7 +108,7 @@ class LoggerHelperFormatter {
     "LoggerHelperFormatter",
     "ColorLoggerFormatter",
     "package:logging",
-    "package:color_logger"
+    "package:color_logger",
   ];
 
   /// Matches a stacktrace line as generated on Android/iOS devices.
@@ -131,7 +160,7 @@ class LoggerHelperFormatter {
     var min = _twoDigits(now.minute);
     var sec = _twoDigits(now.second);
     var ms = _threeDigits(now.millisecond);
-    var timeSinceStart = now.difference(_startTime).toString();
+    // var timeSinceStart = now.difference(_startTime).toString();
     // return '$h:$min:$sec.$ms (+$timeSinceStart)';
     return '$formattedDate $h:$min:$sec.$ms';
   }
@@ -139,10 +168,10 @@ class LoggerHelperFormatter {
   List<String> format(LogRecord record, {int? methodCount}) {
     // methodCount = methodCounts[level];
     String? stackTraceStr;
-    if (ColorLogger.logStack) {
+    if (ColorLogger.stackTracking) {
       stackTraceStr = formatStackTrace(
         StackTrace.current,
-        methodCount ?? methodCounts[record.level] ?? 3,
+        methodCount ?? ColorLogger.defaultMethodCounts[record.level] ?? 3,
       );
     }
 
@@ -163,8 +192,10 @@ class LoggerHelperFormatter {
   ) {
     List<String> buffer = [];
     List<String> lines = [];
+    final timeTitle =
+        '[${record.loggerName}]$verticalLine${record.level.name}$verticalLine$time';
     final msg =
-        '[${record.loggerName}]$verticalLine${record.level.name}$verticalLine$time$verticalLine${record.message}';
+        '[${record.loggerName}]$verticalLine${record.level.name}$verticalLine${record.message}';
     if (stacktrace != null) {
       lines = stacktrace.split('\n');
       for (var line in lines) {
@@ -172,9 +203,11 @@ class LoggerHelperFormatter {
             "[${record.loggerName}]$verticalLine${record.level.name}$verticalLine$line");
       }
     }
-    final result = [...buffer.reversed.toList(), msg];
+    final result = [timeTitle, ...buffer.reversed.toList(), msg];
 
-    return result;
+    return buffer.isEmpty
+        ? ["$timeTitle$verticalLine${record.message}"]
+        : result;
   }
 
   String? formatStackTrace(StackTrace stackTrace, int? methodCount) {

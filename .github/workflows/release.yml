@@ -1,0 +1,74 @@
+name: Publish to pub.dev
+
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+*' # tag pattern on pub.dev: 'v'
+
+env:
+  flutter_version: "3.10.5"
+
+jobs:
+  publish:
+
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the
+      # added or changed files to the repository.
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Clone Flutter repository with stable channel
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.flutter_version }}
+          channel: "stable"
+          cache-key: ${{ env.flutter_version }}
+
+      - name: flutter doctor 
+        run: flutter doctor -v
+
+      - name: Install dependencies
+        run: dart pub get
+      
+      - name: Read package.yaml
+        id: read-package
+        run: |
+          echo "::set-output name=current-version::$(cat pubspec.yaml | grep -o 'version: .*' | awk '{print $2}')"
+
+      - name: set tag version as output
+        id: set-tag-version
+        run: |
+          echo "::set-output name=tag-version::${GITHUB_REF/refs\/tags\/v/}"
+
+      - name: Update version in pubspec.yaml
+        run: |
+          sed -i "s/version:.*/version: ${{steps.set-tag-version.outputs.tag-version }}/g" pubspec.yaml
+
+      - name: Read update package.yaml
+        id: read-update-package
+        run: |
+          echo "::set-output name=update-version::$(cat pubspec.yaml | grep -o 'version: .*' | awk '{print $2}')"
+
+
+      - name: Print version
+        run: |
+          echo "Current Version: ${{ steps.read-package.outputs.current-version }}"
+          echo "Tag version: ${{ steps.set-tag-version.outputs.tag-version }}"
+          echo "update version: ${{ steps.read-update-package.outputs.update-version }}"
+
+      - name: Commit version change
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: 'CI Action: Update version to ${{ steps.set-tag-version.outputs.tag-version }}'
+          file_pattern: pubspec.yaml
+          branch: main
+            
+      - name: Publish package
+        uses: k-paxian/dart-package-publisher@v1.5.1
+        with:
+          credentialJson: ${{ secrets.CREDENTIAL_JSON }} 
+          flutter: true
+          skipTests: true
+          force: true
