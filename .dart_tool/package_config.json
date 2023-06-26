@@ -146,13 +146,13 @@
       "languageVersion": "2.14"
     },
     {
-      "name": "color_logger",
+      "name": "color_logging",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2023-06-21T09:38:33.976328Z",
+  "generated": "2023-06-26T03:06:40.425755Z",
   "generator": "pub",
   "generatorVersion": "3.0.5"
 }

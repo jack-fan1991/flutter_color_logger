@@ -94,7 +94,7 @@ flutter_test
 3.0
 file:///Users/jack/fvm/versions/stable/packages/flutter_test/
 file:///Users/jack/fvm/versions/stable/packages/flutter_test/lib/
-color_logger
+color_logging
 3.0
 file:///Users/jack/work/git/flutter_color_logger/
 file:///Users/jack/work/git/flutter_color_logger/lib/
