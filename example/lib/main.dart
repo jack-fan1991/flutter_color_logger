@@ -4,7 +4,7 @@ import 'package:color_logging/color_logger.dart';
 
 void main() {
   Logger.root.level = Level.ALL;
-  Logger.root.listenOnColorLogger(stackTracking: false, levelColors: {
+  Logger.root.listenOnColorLogger(stackTracking: true, levelColors: {
     Level.WARNING: AnsiColor.fg(214),
   });
   AnsiColor.showColor();

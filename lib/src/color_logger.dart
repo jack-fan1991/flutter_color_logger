@@ -108,7 +108,7 @@ class LoggerHelperFormatter {
     "LoggerHelperFormatter",
     "ColorLoggerFormatter",
     "package:logging",
-    "package:color_logger",
+    "package:color_logging",
   ];
 
   /// Matches a stacktrace line as generated on Android/iOS devices.
