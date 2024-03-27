@@ -1,7 +1,15 @@
+
+## 0.0.5
+## 0.0.4
+- remove Flutter sdk requirement
+
+## 0.0.3
+- downgrade lower bound of sdk: '>=2.12.0 <4.0.0'
+
 ## 0.0.2
-* - remove tracking color_logging file
+- remove tracking color_logging file
 
 
 ## 0.0.1
 
-* TODO: Describe initial release.
+- TODO: Describe initial release.

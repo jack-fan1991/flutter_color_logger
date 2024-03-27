@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
 import 'dart:developer' as developer;
 
 class AnsiColor {
@@ -13,9 +12,10 @@ class AnsiColor {
   static showColor({int start = 0, int end = 255}) {
     // List.generate(80, (i) => print(AnsiColor.fg(i)("[$i]=>s")));
     for (var i = start; i < end; i++) {
-      if (kIsWeb) {
-        print(AnsiColor.fg(i)("[$i] => Test"));
-      } else if (Platform.isIOS) {
+      // if (kIsWeb) {
+      //   print(AnsiColor.fg(i)("[$i] => Test"));
+      // } else
+      if (Platform.isIOS) {
         developer.log(AnsiColor.fg(i)("[$i] => Test"));
       } else {
         print(AnsiColor.fg(i)("[$i] => Test"));

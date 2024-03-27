@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
-import 'package:color_logging/color_logger.dart';
+import 'package:color_logging/color_logging.dart';
 
 void main() {
   Logger.root.level = Level.ALL;

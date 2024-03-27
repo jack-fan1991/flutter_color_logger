@@ -1,6 +1,6 @@
 import 'package:logging/logging.dart';
 
-import 'color_logger.dart';
+import 'color_logging.dart';
 import 'src/color_logger.dart';
 export 'src/ansi_color.dart';
 export 'src/logger_filter.dart';

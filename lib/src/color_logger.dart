@@ -1,6 +1,5 @@
 import 'dart:io';
-import 'package:color_logging/color_logger.dart';
-import 'package:flutter/foundation.dart';
+import 'package:color_logging/color_logging.dart';
 import 'package:logging/logging.dart';
 
 import 'dart:developer' as developer;
@@ -18,11 +17,11 @@ class ColorLogger {
   static bool get stackTracking => _stackTracking;
 
   static set stackTracking(bool value) {
-    if (kIsWeb && value == true) {
-      developer.log(AnsiColor.fg(196)(
-          "ColorObserverLogger.logStack tracking is not supported on web platform"));
-      return;
-    }
+    // if (kIsWeb && value == true) {
+    //   developer.log(AnsiColor.fg(196)(
+    //       "ColorObserverLogger.logStack tracking is not supported on web platform"));
+    //   return;
+    // }
     _stackTracking = value;
   }
 
@@ -78,9 +77,10 @@ class ColorLogger {
     }
     for (var s in msg) {
       // List.generate(80, (i) => print(AnsiColor.fg(i)("[$i]=>s")));
-      if (kIsWeb) {
-        print('  ${color(s)}');
-      } else if (Platform.isIOS) {
+      // if (kIsWeb) {
+      //   print('  ${color(s)}');
+      // } else
+      if (Platform.isIOS) {
         developer.log('  ${color(s)}');
       } else {
         print('  ${color(s)}');

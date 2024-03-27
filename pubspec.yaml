@@ -1,23 +1,14 @@
 name: color_logging
 description: A color logging package for flutter depend on logging package.
-version: 0.0.2
+version: 0.0.5
 homepage: https://pub.dev/packages/color_logging
 repository: https://github.com/jack-fan1991/flutter_color_logger
 issue_tracker: https://github.com/jack-fan1991/flutter_color_logger/issues
 
 environment:
-  sdk: '>=3.0.5 <4.0.0'
-  flutter: ">=1.17.0"
+  sdk: '>=2.12.0 <4.0.0'
 
 dependencies:
-  flutter:
-    sdk: flutter
   logging: ^1.2.0
 
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  flutter_lints: ^2.0.0
-
-
-flutter:
+  
