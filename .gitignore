@@ -51,3 +51,5 @@ example/.dart_tool
 .flutter-plugins-dependencies/
 .flutter-plugins
 .flutter-plugins-dependencies
+/.dart_tool/
+pubspec.yaml-e
