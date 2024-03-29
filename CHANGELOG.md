@@ -1,4 +1,7 @@
 
+## 0.0.7
+- remove tracking package:test_api file
+
 ## 0.0.5
 ## 0.0.4
 - remove Flutter sdk requirement
@@ -8,7 +11,6 @@
 
 ## 0.0.2
 - remove tracking color_logging file
-
 
 ## 0.0.1
 

@@ -109,6 +109,8 @@ class LoggerHelperFormatter {
     "ColorLoggerFormatter",
     "package:logging",
     "package:color_logging",
+    "<asynchronous suspension>",
+    "package:test_api"
   ];
 
   /// Matches a stacktrace line as generated on Android/iOS devices.
@@ -217,7 +219,6 @@ class LoggerHelperFormatter {
     for (var line in lines) {
       if (_discardDeviceStacktraceLine(line) ||
           skipFileIfNeed(line, skipFileName) ||
-          line.contains("<asynchronous suspension>") ||
           line == "") {
         continue;
       }
