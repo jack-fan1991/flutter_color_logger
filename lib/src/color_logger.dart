@@ -15,13 +15,13 @@ class ColorLogger {
   static Filter filter = Filter.allPass();
   static bool _stackTracking = true;
   static bool get stackTracking => _stackTracking;
-
+  static bool kWeb = false;
   static set stackTracking(bool value) {
-    // if (kIsWeb && value == true) {
-    //   developer.log(AnsiColor.fg(196)(
-    //       "ColorObserverLogger.logStack tracking is not supported on web platform"));
-    //   return;
-    // }
+    if (ColorLogger.kWeb && value == true) {
+      developer.log(AnsiColor.fg(196)(
+          "ColorObserverLogger.logStack tracking is not supported on web platform"));
+      return;
+    }
     _stackTracking = value;
   }
 
@@ -77,10 +77,9 @@ class ColorLogger {
     }
     for (var s in msg) {
       // List.generate(80, (i) => print(AnsiColor.fg(i)("[$i]=>s")));
-      // if (kIsWeb) {
-      //   print('  ${color(s)}');
-      // } else
-      if (Platform.isIOS) {
+      if (ColorLogger.kWeb) {
+        print('  ${color(s)}');
+      } else if (Platform.isIOS) {
         developer.log('  ${color(s)}');
       } else {
         print('  ${color(s)}');

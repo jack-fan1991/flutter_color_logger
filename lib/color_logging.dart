@@ -27,9 +27,11 @@ extension ColorLoggerHelper on Logger {
     Map<Level, int>? methodCounts,
     Filter? filter,
     Level? highLightLevel,
+    kWeb = false,
   }) {
     ColorLogger.stackTracking = stackTracking;
     ColorLogger.highLightLevel = highLightLevel;
+    ColorLogger.kWeb = kWeb;
     ColorLogger.updateLevelColors(levelColors);
     ColorLogger.updateMethodCounts(methodCounts);
     ColorLogger.filter = filter ?? Filter.allPass();

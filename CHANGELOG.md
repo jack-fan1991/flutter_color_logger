@@ -1,4 +1,7 @@
 
+## 0.0.8
+- support web color not support tracking
+
 ## 0.0.7
 - remove tracking package:test_api file
 
