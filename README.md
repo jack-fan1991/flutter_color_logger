@@ -1,5 +1,6 @@
 ## Color logger
 
+### Do not use stackTracking if use confuse app build
 ```
    flutter pub add logging
    flutter pub add color_logger
@@ -7,6 +8,7 @@
 
 ```dart   
    // extension
+   // Do not use stackTracking if use confuse build
    extension ColorLoggerHelper on Logger {
      
       listenOnColorLogger({

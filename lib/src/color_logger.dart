@@ -15,13 +15,8 @@ class ColorLogger {
   static Filter filter = Filter.allPass();
   static bool _stackTracking = true;
   static bool get stackTracking => _stackTracking;
-  static bool kWeb = false;
+  static bool kIsWeb = false;
   static set stackTracking(bool value) {
-    if (ColorLogger.kWeb && value == true) {
-      developer.log(AnsiColor.fg(196)(
-          "ColorObserverLogger.logStack tracking is not supported on web platform"));
-      return;
-    }
     _stackTracking = value;
   }
 
@@ -77,7 +72,7 @@ class ColorLogger {
     }
     for (var s in msg) {
       // List.generate(80, (i) => print(AnsiColor.fg(i)("[$i]=>s")));
-      if (ColorLogger.kWeb) {
+      if (ColorLogger.kIsWeb) {
         print('  ${color(s)}');
       } else if (Platform.isIOS) {
         developer.log('  ${color(s)}');
@@ -109,7 +104,11 @@ class LoggerHelperFormatter {
     "package:logging",
     "package:color_logging",
     "<asynchronous suspension>",
-    "package:test_api"
+    "package:test_api",
+    "dart-sdk/lib/_internal/js_dev_runtime",
+    "packages/color_logging",
+    "dart-sdk/lib",
+    "packages/logging"
   ];
 
   /// Matches a stacktrace line as generated on Android/iOS devices.
@@ -221,7 +220,7 @@ class LoggerHelperFormatter {
           line == "") {
         continue;
       }
-      formatted.add('#$count   ${line.replaceFirst(RegExp(r'#\d+\s+'), '')}');
+      formatted.add('#$count   ${line.replaceFirst(RegExp(r'#\d+\s+'), '')}()');
       count++;
       if (count >= methodCount!) {
         if (methodCount == 0) {

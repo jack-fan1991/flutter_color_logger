@@ -1,3 +1,5 @@
+## 0.0.10
+- support web tracking but not 
 
 ## 0.0.8
 - support web color not support tracking
