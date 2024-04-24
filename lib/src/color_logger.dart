@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:color_logging/color_logging.dart';
+import 'package:color_logging/src/config/default_config.dart';
 import 'package:logging/logging.dart';
 
 import 'dart:developer' as developer;
@@ -25,11 +26,6 @@ class ColorLogger {
   static set highLightLevel(Level? value) {
     _highLightLevel = value ?? Level.SEVERE;
   }
-
-  static final Map<Level, AnsiColor> defaultLevelColors = {
-    Level.FINE: AnsiColor.fg(75),
-    Level.SEVERE: AnsiColor.fg(196),
-  };
 
   static final Map<Level, int> defaultMethodCounts = {
     Level.SEVERE: 8,
@@ -71,13 +67,26 @@ class ColorLogger {
       msg = [head, ...msg, tail];
     }
     for (var s in msg) {
+      final lines = s.split('\n');
+      final firstLine = msg.firstWhere((element) => element.contains('│'));
+      String prefix = firstLine.split('│').sublist(0, 2).join('│') + '│';
+      final _s = lines.map((e) {
+        final idx = lines.indexOf(e);
+        String _prefix = '';
+        if (idx == 0) {
+          _prefix = "  ";
+        } else {
+          _prefix = "     " + prefix;
+        }
+        return color('$_prefix ${e}');
+      }).join('\n');
       // List.generate(80, (i) => print(AnsiColor.fg(i)("[$i]=>s")));
       if (ColorLogger.kIsWeb) {
-        print('  ${color(s)}');
+        print('  ${color(_s)}');
       } else if (Platform.isIOS) {
-        developer.log('  ${color(s)}');
+        developer.log('  ${color(_s)}');
       } else {
-        print('  ${color(s)}');
+        print('  ${color(_s)}');
       }
     }
   }
@@ -85,31 +94,6 @@ class ColorLogger {
 
 class LoggerHelperFormatter {
   static const verticalLine = ' │ ';
-  static List<String> skipFileName = [
-    "logger_helper",
-    "package:bloc",
-    "stream.dart",
-    "zone.dart",
-    "async_cast.dart",
-    "stream_impl.dart",
-    "dart:async",
-    "flutter_bloc",
-    "abstract_exception.dart",
-    "base_bloc_widget.dart",
-    "package:flutter/src/widgets/framework.dart",
-    "package:flutter/src/scheduler/binding.dart",
-    "dart:ui",
-    "LoggerHelperFormatter",
-    "ColorLoggerFormatter",
-    "package:logging",
-    "package:color_logging",
-    "<asynchronous suspension>",
-    "package:test_api",
-    "dart-sdk/lib/_internal/js_dev_runtime",
-    "packages/color_logging",
-    "dart-sdk/lib",
-    "packages/logging"
-  ];
 
   /// Matches a stacktrace line as generated on Android/iOS devices.
   /// For example:

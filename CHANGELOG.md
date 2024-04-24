@@ -1,3 +1,7 @@
+## 0.0.12
+## 0.0.11
+- Bug fix : color not work when '\n' in string 
+
 ## 0.0.10
 - support web tracking but not 
 

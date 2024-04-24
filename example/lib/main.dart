@@ -6,7 +6,7 @@ void main() {
   Logger.root.level = Level.ALL;
   Logger.root.listenOnColorLogger(
     stackTracking: true,
-    kWeb: false,
+    kIsWeb: true,
     levelColors: {
       Level.WARNING: AnsiColor.fg(214),
     },
@@ -22,12 +22,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    print("object");
-    logger.fine("fine");
+    logger.finest("finest");
     logger.finer("finer");
+    logger.fine("fine");
     logger.info("info");
     logger.warning("warning");
-    logger.severe("severe");
+    logger.severe("severe\n\nsevere\nsevere");
 
     return MaterialApp(
       title: 'Flutter Demo',

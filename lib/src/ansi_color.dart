@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'dart:developer' as developer;
 
+import 'package:color_logging/src/color_logger.dart';
+
 class AnsiColor {
   /// ANSI Control Sequence Introducer, signals the terminal for new settings.
   static const ansiEsc = '\x1B[';
@@ -12,10 +14,9 @@ class AnsiColor {
   static showColor({int start = 0, int end = 255}) {
     // List.generate(80, (i) => print(AnsiColor.fg(i)("[$i]=>s")));
     for (var i = start; i < end; i++) {
-      // if (kIsWeb) {
-      //   print(AnsiColor.fg(i)("[$i] => Test"));
-      // } else
-      if (Platform.isIOS) {
+      if (ColorLogger.kIsWeb) {
+        print(AnsiColor.fg(i)("[$i] => Test"));
+      } else if (Platform.isIOS) {
         developer.log(AnsiColor.fg(i)("[$i] => Test"));
       } else {
         print(AnsiColor.fg(i)("[$i] => Test"));
