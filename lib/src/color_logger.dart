@@ -70,16 +70,20 @@ class ColorLogger {
       final lines = s.split('\n');
       final firstLine = msg.firstWhere((element) => element.contains('│'));
       String prefix = firstLine.split('│').sublist(0, 2).join('│') + '│';
-      final _s = lines.map((e) {
-        final idx = lines.indexOf(e);
-        String _prefix = '';
-        if (idx == 0) {
-          _prefix = "  ";
-        } else {
-          _prefix = "     " + prefix;
-        }
-        return color('$_prefix ${e}');
-      }).join('\n');
+      String _s = s;
+      if (lines.length > 1) {
+        _s = lines.map((e) {
+          final idx = lines.indexOf(e);
+          String _prefix = '';
+          if (idx == 0) {
+            _prefix = "";
+          } else {
+            _prefix = "  " + prefix;
+          }
+          return color('$_prefix${e}');
+        }).join('\n');
+      }
+
       // List.generate(80, (i) => print(AnsiColor.fg(i)("[$i]=>s")));
       if (ColorLogger.kIsWeb) {
         print('  ${color(_s)}');

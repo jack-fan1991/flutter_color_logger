@@ -1,3 +1,6 @@
+## 0.0.13
+- Set highLightLevel to Level.ALL in color_logging.dart
+
 ## 0.0.12
 ## 0.0.11
 - Bug fix : color not work when '\n' in string 

@@ -26,7 +26,7 @@ extension ColorLoggerHelper on Logger {
     Map<Level, AnsiColor>? levelColors,
     Map<Level, int>? methodCounts,
     Filter? filter,
-    Level? highLightLevel,
+    Level? highLightLevel = Level.ALL,
     required kIsWeb,
   }) {
     ColorLogger.stackTracking = stackTracking;
