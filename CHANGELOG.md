@@ -1,3 +1,6 @@
+## 0.0.16
+- Add prefix argument to `logPrettyMap` function
+
 ## 0.0.15
 - Add support for logging pretty formatted maps
 

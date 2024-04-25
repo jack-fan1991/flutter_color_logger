@@ -40,7 +40,11 @@ extension ColorLoggerHelper on Logger {
     Logger.root.onRecord.listen(ColorLogger.output);
   }
 
-  void logPrettyMap(Object arguments, {Level level = Level.INFO}) {
+  void logPrettyMap({
+    required Object arguments,
+    String prefix = '',
+    Level level = Level.INFO,
+  }) {
     assert(
       () {
         if (arguments is! Map) {
@@ -49,7 +53,7 @@ extension ColorLoggerHelper on Logger {
         return true;
       }(),
     );
-    log(level, prettyFormat(arguments));
+    log(level, " $prefix \n ${prettyFormat(arguments)}");
   }
 }
 
