@@ -1,3 +1,6 @@
+## 0.0.14
+- Update log formatting
+
 ## 0.0.13
 - Set highLightLevel to Level.ALL in color_logging.dart
 

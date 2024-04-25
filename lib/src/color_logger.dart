@@ -181,14 +181,14 @@ class LoggerHelperFormatter {
     List<String> buffer = [];
     List<String> lines = [];
     final timeTitle =
-        '[${record.loggerName}]$verticalLine${record.level.name}$verticalLine$time';
+        '│ [${record.loggerName}]$verticalLine${record.level.name}$verticalLine$time';
     final msg =
-        '[${record.loggerName}]$verticalLine${record.level.name}$verticalLine${record.message}';
+        '│ [${record.loggerName}]$verticalLine${record.level.name}$verticalLine${record.message}';
     if (stacktrace != null) {
       lines = stacktrace.split('\n');
       for (var line in lines) {
         buffer.add(
-            "[${record.loggerName}]$verticalLine${record.level.name}$verticalLine$line");
+            "│ [${record.loggerName}]$verticalLine${record.level.name}$verticalLine$line");
       }
     }
     final result = [timeTitle, ...buffer.reversed.toList(), msg];
