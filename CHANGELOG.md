@@ -1,3 +1,6 @@
+## 0.0.15
+- Add support for logging pretty formatted maps
+
 ## 0.0.14
 - Update log formatting
 

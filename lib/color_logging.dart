@@ -1,7 +1,9 @@
+import 'dart:convert';
+
+import 'package:color_logging/src/color_logger.dart';
 import 'package:logging/logging.dart';
 
 import 'color_logging.dart';
-import 'src/color_logger.dart';
 export 'src/ansi_color.dart';
 export 'src/logger_filter.dart';
 
@@ -37,4 +39,19 @@ extension ColorLoggerHelper on Logger {
     ColorLogger.filter = filter ?? Filter.allPass();
     Logger.root.onRecord.listen(ColorLogger.output);
   }
+
+  void logPrettyMap(Object arguments, {Level level = Level.INFO}) {
+    assert(
+      () {
+        if (arguments is! Map) {
+          throw ArgumentError('arguments must be a Map');
+        }
+        return true;
+      }(),
+    );
+    log(level, prettyFormat(arguments));
+  }
 }
+
+String prettyFormat(Object arguments) =>
+    const JsonEncoder.withIndent('  ').convert(arguments as Map);
