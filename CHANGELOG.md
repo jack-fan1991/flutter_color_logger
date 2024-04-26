@@ -1,3 +1,9 @@
+## 0.0.20
+## 0.0.19
+## 0.0.18
+## 0.0.17
+- Update readme
+
 ## 0.0.16
 - Add prefix argument to `logPrettyMap` function
 

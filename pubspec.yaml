@@ -1,6 +1,6 @@
 name: color_logging
 description: A color logging package for flutter depend on logging package.
-version: 0.0.16
+version: 0.0.20
 homepage: https://pub.dev/packages/color_logging
 repository: https://github.com/jack-fan1991/flutter_color_logger
 issue_tracker: https://github.com/jack-fan1991/flutter_color_logger/issues

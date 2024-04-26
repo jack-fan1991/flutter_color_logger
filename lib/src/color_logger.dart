@@ -208,7 +208,7 @@ class LoggerHelperFormatter {
           line == "") {
         continue;
       }
-      formatted.add('#$count   ${line.replaceFirst(RegExp(r'#\d+\s+'), '')}()');
+      formatted.add('#$count   ${line.replaceFirst(RegExp(r'#\d+\s+'), '')}');
       count++;
       if (count >= methodCount!) {
         if (methodCount == 0) {

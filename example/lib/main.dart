@@ -7,6 +7,10 @@ void main() {
   Logger.root.listenOnColorLogger(
     stackTracking: true,
     kIsWeb: true,
+    methodCounts: {
+      Level.SEVERE: 8,
+      Level.FINE: 2,
+    },
     levelColors: {
       Level.WARNING: AnsiColor.fg(214),
     },
