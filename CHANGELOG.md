@@ -1,3 +1,6 @@
+## 0.0.21
+- Update logging level colors and output  fmt
+
 ## 0.0.20
 ## 0.0.19
 ## 0.0.18

@@ -78,7 +78,7 @@ class ColorLogger {
           if (idx == 0) {
             _prefix = "";
           } else {
-            _prefix = "  " + prefix;
+            _prefix = "" + prefix;
           }
           return color('$_prefix${e}');
         }).join('\n');
@@ -86,11 +86,11 @@ class ColorLogger {
 
       // List.generate(80, (i) => print(AnsiColor.fg(i)("[$i]=>s")));
       if (ColorLogger.kIsWeb) {
-        print('  ${color(_s)}');
+        print('${color(_s)}');
       } else if (Platform.isIOS) {
-        developer.log('  ${color(_s)}');
+        developer.log('${color(_s)}');
       } else {
-        print('  ${color(_s)}');
+        print('${color(_s)}');
       }
     }
   }
