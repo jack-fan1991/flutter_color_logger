@@ -6,7 +6,7 @@ final Map<Level, AnsiColor> defaultLevelColors = {
   Level.FINEST: AnsiColor.fg(244),
   Level.FINER: AnsiColor.fg(7),
   Level.FINE: AnsiColor.fg(75),
-  Level.INFO: AnsiColor.fg(2),
+  Level.INFO: AnsiColor.fg(40),
   Level.WARNING: AnsiColor.fg(214),
   Level.SEVERE: AnsiColor.fg(196),
 };

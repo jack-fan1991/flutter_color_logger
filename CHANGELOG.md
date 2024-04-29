@@ -1,3 +1,6 @@
+## 0.0.22
+- Update logging level colors for Level.INFO in default_config.dart
+
 ## 0.0.21
 - Update logging level colors and output  fmt
 
