@@ -1,3 +1,6 @@
+## 0.0.23
+- BugFix: Correct long message printing on Android and iOS
+
 ## 0.0.22
 - Update logging level colors for Level.INFO in default_config.dart
 

@@ -86,14 +86,26 @@ class ColorLogger {
 
       // List.generate(80, (i) => print(AnsiColor.fg(i)("[$i]=>s")));
       if (ColorLogger.kIsWeb) {
-        print('${color(_s)}');
+        _logLongMessage('${color(_s)}');
       } else if (Platform.isIOS) {
-        developer.log('${color(_s)}');
+        _logLongMessageIos('${color(_s)}');
       } else {
-        print('${color(_s)}');
+        _logLongMessage('${color(_s)}');
       }
     }
   }
+}
+
+void _logLongMessageIos(String message) {
+  final pattern = RegExp('.{1,800}'); // 每次打印800字符
+  pattern
+      .allMatches(message)
+      .forEach((match) => developer.log(match.group(0) ?? ""));
+}
+
+void _logLongMessage(String message) {
+  final pattern = RegExp('.{1,800}'); // 每次打印800字符
+  pattern.allMatches(message).forEach((match) => print(match.group(0)));
 }
 
 class LoggerHelperFormatter {
