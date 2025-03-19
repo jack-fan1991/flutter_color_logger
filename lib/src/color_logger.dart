@@ -167,12 +167,20 @@ class LoggerHelperFormatter {
 
   List<String> format(LogRecord record, {int? methodCount}) {
     // methodCount = methodCounts[level];
+
     String? stackTraceStr;
     if (ColorLogger.stackTracking) {
-      stackTraceStr = formatStackTrace(
-        StackTrace.current,
-        methodCount ?? ColorLogger.defaultMethodCounts[record.level] ?? 3,
-      );
+      if (record.stackTrace != null) {
+        stackTraceStr = formatStackTrace(
+          record.stackTrace!,
+          methodCount ?? ColorLogger.defaultMethodCounts[record.level] ?? 3,
+        );
+      } else {
+        stackTraceStr = formatStackTrace(
+          StackTrace.current,
+          methodCount ?? ColorLogger.defaultMethodCounts[record.level] ?? 3,
+        );
+      }
     }
 
     String timeStr = getTime();

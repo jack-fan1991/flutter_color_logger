@@ -1,3 +1,18 @@
+## 0.0.24
+- BugFix: Support stack trace 
+
+```dart
+try {
+    return MapEntry(
+        "$formFieldKey.$k",
+        RecipientFormData.fromJson(v),
+    );
+} catch (exception, s) {
+    log.severe(exception, _, s);
+    rethrow;
+}
+```
+
 ## 0.0.23
 - BugFix: Correct long message printing on Android and iOS
 
