@@ -1,3 +1,6 @@
+## 0.0.26
+- refactor error stack format
+
 ## 0.0.24
 - BugFix: Support stack trace 
 
@@ -8,7 +11,7 @@ try {
         RecipientFormData.fromJson(v),
     );
 } catch (exception, s) {
-    log.severe(exception, _, s);
+    log.severe(exception, null, s);
     rethrow;
 }
 ```

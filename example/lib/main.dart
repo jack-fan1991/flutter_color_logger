@@ -19,6 +19,16 @@ void main() {
   runApp(MyApp());
 }
 
+class Test {
+  void stackTest() {
+    try {
+      throw Exception("This is a test exception");
+    } catch (exception, s) {
+      Logger("stackTest").severe("severe\n\nsevere\nsevere", null, s);
+    }
+  }
+}
+
 class MyApp extends StatelessWidget {
   final Logger logger = Logger("MyApp");
   MyApp({super.key});
@@ -26,38 +36,39 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    logger.finest("finest");
-    logger.finer("finer");
-    logger.fine("fine");
-    logger.info("info");
-    logger.warning("warning");
-    logger.severe("severe\n\nsevere\nsevere");
-    logger.logPrettyMap(
-      prefix: 'test',
-      arguments: {
-        "glossary": {
-          "title": "example glossary",
-          "GlossDiv": {
-            "title": "S",
-            "GlossList": {
-              "GlossEntry": {
-                "ID": "SGML",
-                "SortAs": "SGML",
-                "GlossTerm": "Standard Generalized Markup Language",
-                "Acronym": "SGML",
-                "Abbrev": "ISO 8879:1986",
-                "GlossDef": {
-                  "para":
-                      "A meta-markup language, used to create markup languages such as DocBook.",
-                  "GlossSeeAlso": ["GML", "XML"]
-                },
-                "GlossSee": "markup"
-              }
-            }
-          }
-        }
-      },
-    );
+    // logger.finest("finest");
+    // logger.finer("finer");
+    // logger.fine("fine");
+    // logger.info("info");
+    // logger.warning("warning");
+    // logger.severe("severe\n\nsevere\nsevere");
+    // logger.logPrettyMap(
+    //   prefix: 'test',
+    //   arguments: {
+    //     "glossary": {
+    //       "title": "example glossary",
+    //       "GlossDiv": {
+    //         "title": "S",
+    //         "GlossList": {
+    //           "GlossEntry": {
+    //             "ID": "SGML",
+    //             "SortAs": "SGML",
+    //             "GlossTerm": "Standard Generalized Markup Language",
+    //             "Acronym": "SGML",
+    //             "Abbrev": "ISO 8879:1986",
+    //             "GlossDef": {
+    //               "para":
+    //                   "A meta-markup language, used to create markup languages such as DocBook.",
+    //               "GlossSeeAlso": ["GML", "XML"]
+    //             },
+    //             "GlossSee": "markup"
+    //           }
+    //         }
+    //       }
+    //     }
+    //   },
+    // );
+    Test().stackTest();
 
     return MaterialApp(
       title: 'Flutter Demo',

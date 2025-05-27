@@ -1,3 +1,4 @@
 {
-    "dart.flutterSdkPath": "/Users/jack/fvm/versions/stable"
+    "dart.flutterSdkPath": "/Users/jack/fvm/versions/stable",
+    "FlutterLoggerEasyLife.customPrefix": "./"
 }
