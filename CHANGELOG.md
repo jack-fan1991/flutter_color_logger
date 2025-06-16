@@ -1,5 +1,8 @@
+## 0.0.27
+- Feature: Add message line time
+
 ## 0.0.26
-- refactor error stack format
+- Refactor error stack format
 
 ## 0.0.24
 - BugFix: Support stack trace 

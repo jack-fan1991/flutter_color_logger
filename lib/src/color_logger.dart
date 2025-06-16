@@ -216,7 +216,7 @@ ${recordStack != null ? '$recordStack\n[Error Stack]' : ''}
     final timeTitle =
         '│ [${record.loggerName}]$verticalLine${record.level.name}$verticalLine$time';
     final msg =
-        '│ [${record.loggerName}]$verticalLine${record.level.name}$verticalLine${record.message}';
+        '│ [${record.loggerName}]$verticalLine${record.level.name}$verticalLine$time $verticalLine${record.message}';
     if (stacktrace != null) {
       lines = stacktrace.split('\n');
       for (var line in lines) {
