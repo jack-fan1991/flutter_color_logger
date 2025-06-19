@@ -171,16 +171,18 @@ class LoggerHelperFormatter {
     String? stackTraceStr;
     if (ColorLogger.stackTracking) {
       if (record.stackTrace != null) {
-        stackTraceStr = formatStackTrace(
-          record.stackTrace!,
-          methodCount ?? ColorLogger.defaultMethodCounts[record.level] ?? 3,
-        );
         final count =
             methodCount ?? ColorLogger.defaultMethodCounts[record.level] ?? 3;
 
-        final currentStack = formatStackTrace(StackTrace.current, count);
+        final currentStack = formatStackTrace(
+          StackTrace.current,
+          count,
+        );
         final recordStack = record.stackTrace != null
-            ? formatStackTrace(record.stackTrace!, count)
+            ? formatStackTrace(
+                record.stackTrace!,
+                count,
+              )
             : null;
 
         stackTraceStr = '''

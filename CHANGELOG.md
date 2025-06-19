@@ -1,3 +1,7 @@
+## 0.0.28
+chore: Improve stack trace output format.
+
+
 ## 0.0.27
 - Feature: Add message line time
 

@@ -31,8 +31,7 @@ const List<String> skipFileName = [
   "package:color_logging",
   "<asynchronous suspension>",
   "package:test_api",
-  "dart-sdk/lib/_internal/js_dev_runtime",
   "packages/color_logging",
-  "dart-sdk/lib",
+  "dart-sdk/lib/async/",
   "packages/logging"
 ];
