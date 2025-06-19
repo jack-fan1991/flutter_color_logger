@@ -1,4 +1,12 @@
 {
     "dart.flutterSdkPath": "/Users/jack/fvm/versions/stable",
-    "FlutterLoggerEasyLife.customPrefix": "./"
+    // 控制相對路徑模式
+    "FlutterLoggerEasyLife.relativePathMode": "workspace",
+    // 是否顯示 emoji
+    "FlutterLoggerEasyLife.showEmoji": true,
+    // 自定義 emoji 對應表
+    "FlutterLoggerEasyLife.emojiMap": {
+        "session": "🎯",
+        "pub": "📦",
+    }
 }

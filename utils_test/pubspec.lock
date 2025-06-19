@@ -87,12 +87,13 @@ packages:
     source: hosted
     version: "1.19.1"
   color_logging:
-    dependency: "direct overridden"
+    dependency: "direct main"
     description:
-      path: ".."
-      relative: true
-    source: path
-    version: "0.0.28"
+      name: color_logging
+      sha256: f4003871817eca63c0f79610fde4b77e209423972a5a65a67ab6690623eff973
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.27"
   convert:
     dependency: transitive
     description:
@@ -109,16 +110,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.6"
-  cupertino_icons:
-    dependency: "direct main"
-    description:
-      name: cupertino_icons
-      sha256: e35129dc44c9118cee2a5603506d823bab99c68393879edb440e0090d07586be
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.5"
   dart_eval:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: dart_eval
       sha256: bbad8246a99a3c61925e19b3d2c2bd6311f8186fb4642a16bf3d22153b3ade55
@@ -171,13 +164,13 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_lints:
-    dependency: "direct overridden"
+    dependency: "direct dev"
     description:
       name: flutter_lints
-      sha256: aeb0b80a8b3709709c9cc496cdc027c5b3216796bc0af0ce1007eaf24464fd4c
+      sha256: "5398f14efa795ffb7a33e9b6a08798b26a180edac4ad7db3f231e40f82ce11e1"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.1"
+    version: "5.0.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -235,12 +228,12 @@ packages:
     dependency: transitive
     description:
       name: lints
-      sha256: "0a217c6c989d21039f1498c3ed9f3ed71b354e69873f13a8dfc3c9fe76f1b452"
+      sha256: c35bb79562d980e9a453fc715854e1ed39e24e7d0297a880ef54e17f9874a9d7
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.1"
+    version: "5.1.1"
   logger:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: logger
       sha256: be4b23575aac7ebf01f225a241eb7f6b5641eeaf43c6a8613510fc2f8cf187d1
@@ -251,10 +244,10 @@ packages:
     dependency: transitive
     description:
       name: logging
-      sha256: "623a88c9594aa774443aa3eb2d41807a48486b5613e67599fb4c41c0ad47c340"
+      sha256: c8245ada5f1717ed44271ed1c26b8ce85ca3228fd2ffdb75468ab01979309d61
       url: "https://pub.dev"
     source: hosted
-    version: "1.2.0"
+    version: "1.3.0"
   macros:
     dependency: transitive
     description:
@@ -388,20 +381,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.4.0"
-  utils:
-    dependency: "direct main"
-    description:
-      path: "../utils"
-      relative: true
-    source: path
-    version: "0.0.1"
-  utils_test:
-    dependency: transitive
-    description:
-      path: "../utils_test"
-      relative: true
-    source: path
-    version: "0.0.1"
   vector_math:
     dependency: transitive
     description:

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 import 'package:color_logging/color_logging.dart';
+import 'package:utils/utils.dart';
 
 void main() {
   Logger.root.level = Level.ALL;
@@ -8,13 +9,14 @@ void main() {
     stackTracking: true,
     kIsWeb: true,
     methodCounts: {
-      Level.SEVERE: 8,
+      Level.SEVERE: 28,
       Level.FINE: 2,
     },
     levelColors: {
       Level.WARNING: AnsiColor.fg(214),
     },
   );
+  UtilsTest.loggerError();
   // AnsiColor.showColor();
   runApp(MyApp());
 }
@@ -68,7 +70,8 @@ class MyApp extends StatelessWidget {
     //     }
     //   },
     // );
-    Test().stackTest();
+    // Test().stackTest();
+    // Utils.error();
 
     return MaterialApp(
       title: 'Flutter Demo',
@@ -96,6 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _incrementCounter() {
     setState(() {
       _counter++;
+      UtilsTest.loggerError();
     });
   }
 
