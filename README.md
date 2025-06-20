@@ -25,6 +25,21 @@
 
 ##### Setup
 * [more](example/lib/main.dart) 
+
+```dart
+class LoggerManger {
+  static void setup({Level level = Level.ALL}) {
+    Logger.root.level = level;
+    Logger.root.listenOnColorLogger(
+      stackTracking: true,
+      kIsWeb: kIsWeb,
+      highLightLevel: level,
+    );
+  }
+}
+```
+
+
 * Do not use stackTracking if use confuse build
 ```dart   
    // extension
