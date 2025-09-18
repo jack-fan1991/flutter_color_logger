@@ -1,3 +1,6 @@
+## 0.0.29
+- Feat: Add onEvent callback to `listenOnColorLogger` for custom event processing.
+
 ## 0.0.28
 chore: Improve stack trace output format.
 

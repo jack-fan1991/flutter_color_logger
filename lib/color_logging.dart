@@ -23,21 +23,26 @@ extension ColorLoggerHelper on Logger {
   ///
   ///
   ///```
-  void listenOnColorLogger({
-    bool stackTracking = true,
-    Map<Level, AnsiColor>? levelColors,
-    Map<Level, int>? methodCounts,
-    Filter? filter,
-    Level? highLightLevel = Level.ALL,
-    required kIsWeb,
-  }) {
+  void listenOnColorLogger(
+      {bool stackTracking = true,
+      Map<Level, AnsiColor>? levelColors,
+      Map<Level, int>? methodCounts,
+      Filter? filter,
+      Level? highLightLevel = Level.ALL,
+      required bool kIsWeb,
+      void Function(LogRecord event)? onEvent}) {
     ColorLogger.stackTracking = stackTracking;
     ColorLogger.highLightLevel = highLightLevel;
     ColorLogger.kIsWeb = kIsWeb;
     ColorLogger.updateLevelColors(levelColors);
     ColorLogger.updateMethodCounts(methodCounts);
     ColorLogger.filter = filter ?? Filter.allPass();
-    Logger.root.onRecord.listen(ColorLogger.output);
+    Logger.root.onRecord.listen(
+      (event) {
+        onEvent?.call(event);
+        ColorLogger.output(event);
+      },
+    );
   }
 
   void logPrettyMap({
